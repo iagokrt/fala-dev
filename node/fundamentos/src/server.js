@@ -21,11 +21,15 @@ const server = http.createServer((req, res) => {
       email: 'tete@mail.com'
     })
 
-    return res.end("Create Users")
+    return res
+    .writeHead(201)
+    .end()
 
   }
 
-  return res.end("Server is running!")
+  return res
+  .writeHead(404)
+  .end("Server is running! Main")
 });
 
 server.listen(3000)
