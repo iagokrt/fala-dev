@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises'
 
-const db = new URL('db.json', import.meta.url)
+const db = new URL('../db.json', import.meta.url)
 
 export class Database {
   #database = {}
