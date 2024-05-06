@@ -18,8 +18,16 @@ export class Database {
     fs.writeFile(db, JSON.stringify(this.#database))
   }
 
-  select(table) {
-    const data = this.#database[table] ?? []
+  select(table, search) {
+    let data = this.#database[table] ?? []
+
+    if (search) {
+      data = data.filter(row => {
+        return Object.entries(search).some(([key, value]) => {
+          return row[key].toLowerCase().includes(value.toLowerCase())
+        })
+      })
+    }
 
     return data
   }
@@ -36,20 +44,20 @@ export class Database {
     return data
   }
 
-  delete(table, id) {
-    const index = this.#database[table].findIndex(row => row.id === id)
-
-    if(index > -1) {
-      this.#database[table].splice(index, 1)
-      this.#persist()
-    }
-  }
-
   update(table, id, data) {
     const index = this.#database[table].findIndex(row => row.id === id)
 
     if(index > -1) {
       this.#database[table][index] = { id, ...data }
+      this.#persist()
+    }
+  }
+
+  delete(table, id) {
+    const index = this.#database[table].findIndex(row => row.id === id)
+
+    if(index > -1) {
+      this.#database[table].splice(index, 1)
       this.#persist()
     }
   }
