@@ -1,4 +1,3 @@
-
 import { FastifyInstance } from 'fastify'
 import { z } from 'zod'
 import crypto from 'node:crypto'
