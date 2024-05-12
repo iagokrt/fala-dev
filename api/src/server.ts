@@ -1,12 +1,12 @@
 import fastify from 'fastify'
+import crypto from 'node:crypto'
 import { knex } from './database'
+import { env } from './env'
+import { transactionsRoutes } from './routes/transactions'
 
 const app = fastify()
 
-app.get('/hello', async () => {
-  const db = await knex('sqlite_schema').select('*')
-  return db
-})
+app.register(transactionsRoutes)
 
 app
   .listen({
