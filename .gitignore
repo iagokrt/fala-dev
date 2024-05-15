@@ -3,3 +3,4 @@ api/node_modules
 api/db/app.db
 api/.env
 api/.env.test
+api/dist
