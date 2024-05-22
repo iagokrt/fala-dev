@@ -1,7 +1,3 @@
-node/fundamentos/node_modules
-api/node_modules
-api/db/app.db
-api/db/test.db
-api/.env
-api/.env.test
-api/dist
+*/node_modules
+*/dist
+/api/.env
